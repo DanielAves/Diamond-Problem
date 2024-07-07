@@ -16,63 +16,37 @@ public class Diamond
     {
         StringBuilder rows = new StringBuilder(); 
         
-        //Short circuit for A
-        if (input == 'A') return "A"; 
-        
-        //TopHalf of diamond
-        int indentationCount = 0;
-        int middleCharacterPosition = input - 'A';
+        //Generate the top half and the middle line of the diamond
         for (char character = 'A'; character <= input; character++)
         {
-            StringBuilder row = new StringBuilder();
-            if (character == 'A')
-            {
-                row.Append(new string(' ', middleCharacterPosition));
-                row.Append(character); 
-            }
-            else
-            {
-                //Leading spaces
-                row.Append(new string(' ', input - character));
-                row.Append(character);
-                
-                //Spaces after
-                row.Append(new string(' ', 2 * indentationCount -1));
-                row.Append(character);
-            }
-
-            Console.WriteLine(row);
-            row.Append('\n'); 
-            rows.Append(row); 
-            indentationCount++; 
+            rows.Append(CreateLine(input, character));
         }
         
-        //Bottom Half
+        // Generate the bottom half of the diamond
         for (char character = (char)(input - 1); character >= 'A'; character--)
         {
-            StringBuilder row = new StringBuilder();
-            if (character == 'A')
-            {
-                row.Append(new string(' ', middleCharacterPosition));
-                row.Append(character); 
-            }
-            else
-            {
-                //Leading spaces
-                row.Append(new string(' ', input - character));
-                row.Append(character);
-                
-                //Spaces after
-                row.Append(new string(' ', (character - 'A') * 2 - 1));
-                row.Append(character);
-            }
-
-            Console.WriteLine(row);
-            row.Append('\n'); 
-            rows.Append(row); 
-            indentationCount++; 
+            rows.Append(CreateLine(input, character));
         }
         
         return rows.ToString(); 
+    }
+
+    private static string CreateLine(char input, char character)
+    {
+        StringBuilder row = new StringBuilder();
+
+        // Leading spaces
+        row.Append(new string(' ', input - character));
+
+        // The character
+        row.Append(character);
+
+        if (character != 'A')
+        {
+            row.Append(new string(' ', (character - 'A') * 2 - 1));
+            row.Append(character);
+        }
+        row.Append('\n');
+        return row.ToString();
     }
 }
