@@ -1,5 +1,6 @@
 ﻿using DiamondProblem;
 
-var input = Diamond.HanldeInput(); 
-var result = Diamond.GenerateDiamond(Convert.ToChar(input)); 
+char output = Diamond.HandleInput();
+string result = Diamond.GenerateDiamond(output);
 Console.WriteLine(result);
+

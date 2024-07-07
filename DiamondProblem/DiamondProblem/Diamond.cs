@@ -1,20 +1,42 @@
 ﻿using System.Text;
+using System.Text.RegularExpressions;
 
 namespace DiamondProblem;
 
-public class Diamond
+public abstract class Diamond
 {
-    public static string HanldeInput()
+    public static char HandleInput()
     {
-        Console.WriteLine("Enter a character between [a-z]");
-        var input = Console.ReadLine()?.ToUpper();
-        
-        //TODO Validation 
-        return input; 
+        Console.WriteLine("Enter a character between [a-z]:");
+        string input = Console.ReadLine();
+
+        if (!ValidateInput(input, out var errorMsg))
+        {
+            Console.WriteLine(errorMsg);
+        }
+        return Convert.ToChar(input.ToUpper());
     }
+
+    private static bool ValidateInput(string? input, out string errorMsg)
+    {
+        errorMsg = string.Empty;
+        if (input is null)
+        {
+            errorMsg = "Invalid input, ensure a value is entered";
+            return false;
+        } 
+        Regex regex = new Regex("^[A-Z]$");
+        if(!regex.IsMatch(input))
+        {
+            errorMsg = "Invalid input, please provide a character between A and Z ";
+            return false;
+        }
+        return true;
+    }
+
     public static string GenerateDiamond(char input)
     {
-        StringBuilder rows = new StringBuilder(); 
+        var rows = new StringBuilder(); 
         
         //Generate the top half and the middle line of the diamond
         for (char character = 'A'; character <= input; character++)
@@ -33,7 +55,7 @@ public class Diamond
 
     private static string CreateLine(char input, char character)
     {
-        StringBuilder row = new StringBuilder();
+        var row = new StringBuilder();
 
         // Leading spaces
         row.Append(new string(' ', input - character));
