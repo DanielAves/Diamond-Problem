@@ -7,5 +7,6 @@ In the current form, the application accepts one input which must be a character
 
 **Tests**
 Located in DiamondTests
-  *Note*
+
+*Note*
 Initial tests that became redundant have been left in and skipped to show process.
