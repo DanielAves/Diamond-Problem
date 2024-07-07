@@ -46,6 +46,33 @@ public class Diamond
             rows.Append(row); 
             indentationCount++; 
         }
+        
+        //Bottom Half
+        for (char character = (char)(input - 1); character >= 'A'; character--)
+        {
+            StringBuilder row = new StringBuilder();
+            if (character == 'A')
+            {
+                row.Append(new string(' ', middleCharacterPosition));
+                row.Append(character); 
+            }
+            else
+            {
+                //Leading spaces
+                row.Append(new string(' ', input - character));
+                row.Append(character);
+                
+                //Spaces after
+                row.Append(new string(' ', (character - 'A') * 2 - 1));
+                row.Append(character);
+            }
+
+            Console.WriteLine(row);
+            row.Append('\n'); 
+            rows.Append(row); 
+            indentationCount++; 
+        }
+        
         return rows.ToString(); 
     }
 }
