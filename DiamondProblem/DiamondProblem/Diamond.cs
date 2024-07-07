@@ -1,4 +1,6 @@
-﻿namespace DiamondProblem;
+﻿using System.Text;
+
+namespace DiamondProblem;
 
 public class Diamond
 {
@@ -12,12 +14,38 @@ public class Diamond
     }
     public static string GenerateDiamond(char input)
     {
-        List<string> rows = new(); 
+        StringBuilder rows = new StringBuilder(); 
         
         //Short circuit for A
         if (input == 'A') return "A"; 
         
+        //TopHalf of diamond
+        int indentationCount = 0;
+        int middleCharacterPosition = input - 'A';
+        for (char character = 'A'; character <= input; character++)
+        {
+            StringBuilder row = new StringBuilder();
+            if (character == 'A')
+            {
+                row.Append(new string(' ', middleCharacterPosition));
+                row.Append(character); 
+            }
+            else
+            {
+                //Leading spaces
+                row.Append(new string(' ', input - character));
+                row.Append(character);
+                
+                //Spaces after
+                row.Append(new string(' ', 2 * indentationCount -1));
+                row.Append(character);
+            }
 
-        return string.Empty; 
+            Console.WriteLine(row);
+            row.Append('\n'); 
+            rows.Append(row); 
+            indentationCount++; 
+        }
+        return rows.ToString(); 
     }
 }

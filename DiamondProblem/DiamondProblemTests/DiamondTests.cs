@@ -9,14 +9,19 @@ public class DiamondTests
     {
         Assert.Equal("A",Diamond.GenerateDiamond('A'));
     }
-    [Fact]
+    [Fact (Skip = "Iterated beyond")]
     public void GenerateDiamond_InputC_ReturnsCorrectNumberOfCharactersWithNoIndentation()
     {
         Assert.Equal("ABC",Diamond.GenerateDiamond('C'));
     }
-    [Fact]
+    [Fact (Skip = "Iterated beyond")]
     public void GenerateDiamond_InputC_ReturnsCharactersOnNewLines()
     {
         Assert.Equal("A\nB\nC\n",Diamond.GenerateDiamond('C'));
+    }
+    [Fact]
+    public void GenerateDiamond_InputC_ReturnsTopDepthWithCorrectSpacingBeforeAndAfter()
+    {
+        Assert.Equal("  A\n B B\nC   C\n",Diamond.GenerateDiamond('C'));
     }
 }
