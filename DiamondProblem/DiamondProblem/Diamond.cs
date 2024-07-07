@@ -8,13 +8,13 @@ public abstract class Diamond
     public static char HandleInput()
     {
         Console.WriteLine("Enter a character between [a-z]:");
-        string input = Console.ReadLine();
+        string? input = Console.ReadLine()?.ToUpper();
 
         if (!ValidateInput(input, out var errorMsg))
         {
             Console.WriteLine(errorMsg);
         }
-        return Convert.ToChar(input.ToUpper());
+        return Convert.ToChar(input);
     }
 
     private static bool ValidateInput(string? input, out string errorMsg)
