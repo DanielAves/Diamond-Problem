@@ -24,4 +24,10 @@ public class DiamondTests
     {
         Assert.Equal("  A\n B B\nC   C\n",Diamond.GenerateDiamond('C'));
     }
+    [Theory]
+    [InlineData('C', "  A\n B B\nC   C\n B B\n  A\n")]
+    public void GenerateDiamond_ValidInput_ReturnsCorrectDepthWithSpacingBeforeAndAfter(char inputCharacter, string expectedOutput)
+    {
+        Assert.Equal(expectedOutput,Diamond.GenerateDiamond(inputCharacter));
+    }
 }
